@@ -1,0 +1,24 @@
+- RSS feed met enkele korte berichten
+- Verloop van het festival is vooraf vastgelegd, niet te wijzigen via de admin webinterface
+- Database best voorzien op podiums-podiumnaam + bands / hun tijdsslot
+- Bij te houden info van bands: naam, korte omschrijving, foto, genres
+- Genre
+
+
+Gebruikers:
+- Overzicht van de optredens (lineup), foto groep en timing
+- Eenvoudig sorteren per dag / tijdslot vd optredens, details kunnen opvragen
+- Tickets bestellen: naam, voornaam, email, aantal tickets
+- Er is een maximum aantal tickets beschikbaar
+
+
+Administrators:
+- overzicht van de reservaties te kunnen opvragen
+- username: docent - docentdocent
+
+- Anonieme users?
+
+- Database op MS SQL (geen local DB)
+
+
+
