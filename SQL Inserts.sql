@@ -88,8 +88,9 @@ INSERT INTO dbo.Orders	( userid, ticket, aantal) VALUES ( 2, 2, 6 );
 
 CREATE TABLE dbo.Tickets ( 
 	ID                   int NOT NULL   IDENTITY,
-	soort                varchar(20)    ,
+	soort                text    ,
 	aantal               int NOT NULL   ,
+	prijs                float    ,
 	CONSTRAINT Pk_Tickets PRIMARY KEY ( ID )
  );
 exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Welk (dag)ticket' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Tickets', @level2type=N'COLUMN',@level2name=N'soort';

@@ -19,6 +19,3 @@ Administrators:
 - Anonieme users?
 
 - Database op MS SQL (geen local DB)
-
-
-

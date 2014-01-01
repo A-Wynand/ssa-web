@@ -1,0 +1,23 @@
+﻿@model FestivalWeb.Models.Gebruikers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>testviewgebruikers</title>
+</head>
+<body>
+    <div>
+        @foreach (var gebr in ViewBag.message)
+        {
+            <br />
+            @gebr.anaam
+        }
+    </div>
+</body>
+</html>

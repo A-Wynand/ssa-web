@@ -1,0 +1,29 @@
+﻿@model Login.Models.Band
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Band</legend>
+
+    <div class="display-label">
+        <img src="@Url.Content(Model.fotoUri)" />
+    </div>
+
+    <div class="display-label">
+         @Model.naam
+    </div>
+    <div class="display-field">
+        @Model.omschrijving
+    </div>
+
+
+    
+
+</fieldset>
+<p>
+    @Html.ActionLink("Terug naar overzicht", "Bands")
+</p>

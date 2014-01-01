@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FestivalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FestivalModelStoreContainer">
+          <EntitySet Name="Bands" EntityType="FestivalModel.Store.Bands" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Gebruikers" EntityType="FestivalModel.Store.Gebruikers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Genres" EntityType="FestivalModel.Store.Genres" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tickets" EntityType="FestivalModel.Store.Tickets" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Bands">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="naam" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="omschrijving" Type="text" Nullable="false" />
+          <Property Name="fotoUri" Type="varchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Gebruikers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="vnaam" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="anaam" Type="varchar" Nullable="false" MaxLength="60" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="120" />
+          <Property Name="wachtwoord" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="isAdmin" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="naam" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="soort" Type="text" />
+          <Property Name="aantal" Type="int" Nullable="false" />
+          <Property Name="prijs" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'Festival.dbo.Bandgenres' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Bandgenres">
+        <Property Name="Band_ID" Type="int" />
+        <Property Name="Genre_ID" Type="int" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'Festival.dbo.Orders' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="Orders">
+        <Property Name="userid" Type="int" />
+        <Property Name="ticket" Type="int" />
+        <Property Name="aantal" Type="int" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FestivalModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FestivalEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Bands" EntityType="FestivalModel.Bands" />
+          <EntitySet Name="Gebruikers" EntityType="FestivalModel.Gebruikers" />
+          <EntitySet Name="Genres" EntityType="FestivalModel.Genres" />
+          <EntitySet Name="Tickets" EntityType="FestivalModel.Tickets" />
+        </EntityContainer>
+        <EntityType Name="Bands">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="naam" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="omschrijving" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="fotoUri" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Gebruikers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="vnaam" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="anaam" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="120" Unicode="false" FixedLength="false" />
+          <Property Name="wachtwoord" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="isAdmin" Type="Byte" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="naam" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="soort" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="aantal" Type="Int32" Nullable="false" />
+          <Property Name="prijs" Type="Double" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FestivalModelStoreContainer" CdmEntityContainer="FestivalEntities">
+          <EntitySetMapping Name="Bands">
+            <EntityTypeMapping TypeName="FestivalModel.Bands">
+              <MappingFragment StoreEntitySet="Bands">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="omschrijving" ColumnName="omschrijving" />
+                <ScalarProperty Name="fotoUri" ColumnName="fotoUri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gebruikers">
+            <EntityTypeMapping TypeName="FestivalModel.Gebruikers">
+              <MappingFragment StoreEntitySet="Gebruikers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="vnaam" ColumnName="vnaam" />
+                <ScalarProperty Name="anaam" ColumnName="anaam" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="wachtwoord" ColumnName="wachtwoord" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="FestivalModel.Genres">
+              <MappingFragment StoreEntitySet="Genres">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="FestivalModel.Tickets">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="soort" ColumnName="soort" />
+                <ScalarProperty Name="aantal" ColumnName="aantal" />
+                <ScalarProperty Name="prijs" ColumnName="prijs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

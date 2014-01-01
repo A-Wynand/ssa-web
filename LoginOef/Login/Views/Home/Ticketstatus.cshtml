@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Login.Models.Ticket>
+
+@{
+    ViewBag.Title = "Ticketstatus";
+}
+
+<h2>Ticketstatus</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Ticket Type
+        </th>
+        <th>
+            Resterend aantal tickets
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.soort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantal)
+        </td>
+    </tr>
+}
+
+</table>
