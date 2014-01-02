@@ -23,21 +23,22 @@
     </tr>
 
 @using (Html.BeginForm()) {
-    @Html.AntiForgeryToken() @*No XSS not true, :D*@
+    @Html.AntiForgeryToken() @*No XSS*@
     @Html.ValidationSummary()
 
     int i = 0;
     foreach (var item in ViewBag.Tickets) 
-    {
+    {        
         <tr>
             <td>
                 @item.soort
             </td>
             @if(WebSecurity.IsAuthenticated){
                 <td>
+                  
                     @Html.DropDownListFor(m => m[i].aantal,  new SelectList(
                         new List<int>{
-                            1,2,3,4,5
+                            0,1,2,3,4,5
                         })
                     )
                 
@@ -47,11 +48,18 @@
                 @item.prijs
             </td>
         </tr>
-        i++;
-    }
     
-    @Html.Raw(true ? "</table> <input type=\"submit\" value=\"Register\" />" : "");
+   @* //Model[i].soort = item.soort;*@
 
-   
+        i++;
+
+    }
+    <tr> 
+        <td></td>
+        <td></td>
+        <td>
+            <input type="submit" value="Bestel nu!" />
+        </td>
+    </tr>
 }
-
+</table>

@@ -210,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\Linkin-Park-Iridescent-transformers3.jpg" />
+    <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -316,7 +317,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -327,6 +327,8 @@
     <Content Include="Views\Home\Tickets.cshtml" />
     <Content Include="Views\Home\Ticketstatus.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\TicketBesteld.cshtml" />
+    <Content Include="Views\Home\BesteldeTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

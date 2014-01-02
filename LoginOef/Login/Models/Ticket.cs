@@ -14,14 +14,6 @@ namespace Login.Models
         public float prijs { get; set; }
     }
 
-    public class Bestelling
-    {
-        public int UserId { get; set; }
-        public IList<DagBestelling> DagBestellingen { get; set; }
-        public SelectList Shit { get; set; } 
-        public string SelectedItem { get; set; }
-    }
-
     public class DagBestelling
     {
         public string soort { get; set; }

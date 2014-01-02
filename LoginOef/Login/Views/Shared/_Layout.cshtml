@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - Ultra musicfestival</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -12,7 +12,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title"><img src="~/Content/images/logo.jpg"/></p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -23,10 +23,12 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Bands", "Bands", "Home")</li>
                             <li>@Html.ActionLink("Tickets", "Tickets", "Home")</li>
+                            <li>@Html.ActionLink("Mijn tickets","BesteldeTickets","Home") </li>
                             @*@if(User.IsInRole("Admin")){*@
                                 <li>@Html.ActionLink("Ticketstatus", "Ticketstatus", "Home")</li>
                             @*}*@
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Route - Contact", "Contact", "Home")</li>
+                            
                         </ul>
                     </nav>
                 </div>
@@ -40,8 +42,8 @@
         </div>
         <footer>
             <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                <div class="float-right">
+                    <p>&copy; Ultra Musicfestival @DateTime.Now.Year</p>
                 </div>
             </div>
         </footer>

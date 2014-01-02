@@ -13,21 +13,11 @@ namespace Login.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
         public ActionResult Bands()
         {
-            Console.WriteLine(" HERE WE GO LOOK FOR ME : ");
             BandSQLRepository myDbHandler = new BandSQLRepository(); 
             return View(myDbHandler.GetAllBands());
         }
@@ -35,7 +25,6 @@ namespace Login.Controllers
         public ActionResult Details(int id)
         {
             BandSQLRepository myDbHandler = new BandSQLRepository();
-            Console.WriteLine(" HERE WE GO LOOK FOR ME : " + id);
 
             var myModel = myDbHandler.getBandSpecific(id);
 
@@ -52,6 +41,33 @@ namespace Login.Controllers
             return View(BestellingList);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Tickets(List<DagBestelling> model)
+        {
+            //Geprobeert extra variable soort in te stellen in view, maar niet in geslaagd,
+            //het probleem zijnde dat bij Model[i] de i out of bound is, terwijl in eenzelfde
+            //Codeblock m => m[i] wel werkt??
+             
+            //Fix because it didn't work :( #saddayQQ
+            model[0].soort = "vrijdag";
+            model[1].soort = "zaterdag";
+            model[2].soort = "zondag";
+            model[3].soort = "Comboticket";
+            model[4].soort = "Parking";
+
+            TicketSQLRepository myDbHandler = new TicketSQLRepository();
+            myDbHandler.insertOrder(model, User.Identity.Name);
+            
+            return View("TicketBesteld", model);
+        }
+
+        public ActionResult BesteldeTickets()
+        {
+            TicketSQLRepository myDbHandler = new TicketSQLRepository();
+            return View(myDbHandler.getAllTicketsByUser(User.Identity.Name));
+        }
+
         public ActionResult Ticketstatus() 
         {
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
@@ -61,8 +77,6 @@ namespace Login.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Login.Models.Ticket>
+
+@{
+    ViewBag.Title = "BesteldeTickets";
+}
+
+<h2>BesteldeTickets</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.soort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aantal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prijs)
+        </th>
+        <th></th>
+    </tr>
+
+@{
+    float total = 0; 
+}
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.soort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantal)
+        </td>
+        <td>
+            €@Html.DisplayFor(modelItem => item.prijs)
+            @{total += item.prijs;}
+        </td>
+    </tr>
+
+}
+    <tr>
+        <td>Totaalprijs: </td>
+        <td></td>
+        <td>€@total</td>
+    </tr>
+
+
+</table>
