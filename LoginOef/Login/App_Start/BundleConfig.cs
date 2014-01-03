@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Login
+namespace Festival
 {
     public class BundleConfig
     {

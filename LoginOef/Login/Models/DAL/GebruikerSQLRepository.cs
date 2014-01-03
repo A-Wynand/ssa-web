@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace Login.Models.DAL
+namespace Festival.Models.DAL
 {
     public class GebruikerSQLRepository
     {
@@ -29,7 +29,6 @@ namespace Login.Models.DAL
                 {
                     cmd.CommandType = CommandType.Text;
 
-                    // This is what stores your data from the internets...
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -48,11 +47,10 @@ namespace Login.Models.DAL
                                 
                                 lijst.Add(newGebruiker);
                             }
+                            if (reader != null) reader.Close();
 
-                            return lijst; // lol
+                            return lijst;
                         }
-
-                        // internet says null!L!LL!L!
                         return null;
                     }
 

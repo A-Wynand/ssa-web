@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
-using Login.Models;
+using Festival.Models;
 
-namespace Login
+namespace Festival
 {
     public static class AuthConfig
     {

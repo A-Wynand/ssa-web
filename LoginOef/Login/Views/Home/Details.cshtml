@@ -1,29 +1,26 @@
-﻿@model Login.Models.Band
+﻿@model Festival.Models.Band
 
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
+<p>
+    <h2>@Model.naam - details</h2>
+</p>
 <fieldset>
     <legend>Band</legend>
 
     <div class="display-label">
-        <img src="@Url.Content(Model.fotoUri)" />
+        <img src="@Url.Content(Model.fotoUri)" width="500" height="300" />
     </div>
-
-    <div class="display-label">
-         @Model.naam
-    </div>
-    <div class="display-field">
-        @Model.omschrijving
-    </div>
-
+    <p>
+        <div class="display-field">
+            @Model.omschrijving
+        </div>
+    </p>    
 
     
 
 </fieldset>
 <p>
-    @Html.ActionLink("Terug naar overzicht", "Bands")
+    @Html.ActionLink("Terug naar bandoverzicht", "Bands")
 </p>

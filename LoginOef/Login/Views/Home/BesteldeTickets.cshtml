@@ -1,21 +1,22 @@
-﻿@model IEnumerable<Login.Models.Ticket>
+﻿@model IEnumerable<Festival.Models.Ticket>
 
 @{
-    ViewBag.Title = "BesteldeTickets";
+    ViewBag.Title = "Bestelde tickets";
 }
 
-<h2>BesteldeTickets</h2>
+<h2>@ViewBag.Title</h2>
 
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.soort)
+            Soort
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.aantal)
-        </th>
+            Aantal
+       </th>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.prijs)
+            Prijs
         </th>
         <th></th>
     </tr>
@@ -32,6 +33,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.aantal)
         </td>
+        <td></td>
         <td>
             €@Html.DisplayFor(modelItem => item.prijs)
             @{total += item.prijs;}
@@ -41,6 +43,7 @@
 }
     <tr>
         <td>Totaalprijs: </td>
+        <td></td>
         <td></td>
         <td>€@total</td>
     </tr>

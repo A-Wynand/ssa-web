@@ -8,10 +8,10 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using Login.Filters;
-using Login.Models;
+using Festival.Filters;
+using Festival.Models;
 
-namespace Login.Controllers
+namespace Festival.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
@@ -41,7 +41,7 @@ namespace Login.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            ModelState.AddModelError("", "Uw gebruikersnaam of wachtwoord is incorrect.");
             return View(model);
         }
 
@@ -128,8 +128,8 @@ namespace Login.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message == ManageMessageId.ChangePasswordSuccess ? "Je wachtwoord is verandert."
+                : message == ManageMessageId.SetPasswordSuccess ? "Je wachtwoord is ingesteld."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
@@ -168,7 +168,7 @@ namespace Login.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("", "Het huidige of het nieuwe wachtwoord is fout.");
                     }
                 }
             }
@@ -280,7 +280,7 @@ namespace Login.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", "Deze gebruikersnaam is reeds in gebruik. Gelieve een andere te kiezen.");
                     }
                 }
             }

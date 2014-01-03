@@ -1,11 +1,17 @@
-﻿@model List<Login.Models.DagBestelling>
+﻿@model List<Festival.Models.DagBestelling>
 
 @{
     ViewBag.Title = "Tickets";
 }
 
 <h2>Tickets</h2>
-
+    @if(WebSecurity.IsAuthenticated){
+        <p>Geef hieronder je bestelling door. Per bestelling zijn er maximum 5 tickets van elk soort beschikbaar.</p>
+    }
+    @if (WebSecurity.IsAuthenticated == false)
+    {
+        <p>Registreer een account om je tickets te bestellen!</p>
+    }
 <table>
     <tr>
         <th>
@@ -28,7 +34,7 @@
 
     int i = 0;
     foreach (var item in ViewBag.Tickets) 
-    {        
+    {
         <tr>
             <td>
                 @item.soort
@@ -54,12 +60,15 @@
         i++;
 
     }
-    <tr> 
-        <td></td>
-        <td></td>
-        <td>
-            <input type="submit" value="Bestel nu!" />
-        </td>
-    </tr>
+    if(WebSecurity.IsAuthenticated){
+    
+        <tr> 
+            <td></td>
+            <td></td>
+            <td>
+                <input type="submit" value="Bestel nu!" />
+            </td>
+        </tr>
+    }
 }
 </table>

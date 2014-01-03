@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace Login.Models.DAL
+namespace Festival.Models.DAL
 {
     public class BandSQLRepository
     {
@@ -29,7 +29,7 @@ namespace Login.Models.DAL
                 {
                     cmd.CommandType = CommandType.Text;
 
-                    // This is what stores your data from the internets...
+                    // Store the data from the DB...
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -44,14 +44,14 @@ namespace Login.Models.DAL
                                 newBand.naam = reader["naam"].ToString();
                                 newBand.omschrijving = reader["omschrijving"].ToString();
                                 newBand.fotoUri = reader["fotoUri"].ToString();
+                                newBand.tijdslot = reader["tijdslot"].ToString();
+                                newBand.podium = reader["podium"].ToString();
                                 
                                 lijst.Add(newBand);
                             }
 
-                            return lijst; // lol
+                            return lijst;
                         }
-
-                        // internet says null!L!LL!L!
                         return null;
                     }
 
@@ -72,7 +72,7 @@ namespace Login.Models.DAL
                     cmd.Parameters.Add("@ID", SqlDbType.Int);
                     cmd.Parameters["@ID"].Value = id;
 
-                    // This is what stores your data from the internets...
+                    // Store the data from the DB...
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -86,12 +86,13 @@ namespace Login.Models.DAL
                                 newBand.naam = reader["naam"].ToString();
                                 newBand.omschrijving = reader["omschrijving"].ToString();
                                 newBand.fotoUri = reader["fotoUri"].ToString();
+                                newBand.tijdslot = reader["tijdslot"].ToString();
+                                newBand.podium = reader["podium"].ToString();
 
                                 return newBand;
                             }
                         }
 
-                        // internet says null!L!LL!L!
                         return null;
                     }
 

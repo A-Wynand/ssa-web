@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Web;
 
-namespace Login.Models
+namespace Festival.Models
 {
     public partial class Ticket
     {

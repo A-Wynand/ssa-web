@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Login.Models.Band>
+﻿@model IEnumerable<Festival.Models.Band>
 
 @{
     ViewBag.Title = "Bands";
@@ -9,10 +9,13 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.naam)
+            Bandnaam
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fotoUri)
+            Tijdslot
+        </th>
+        <th>
+            Stage
         </th>
     </tr>
 
@@ -22,10 +25,13 @@
             @Html.DisplayFor(modelItem => item.naam)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fotoUri)
+            @Html.DisplayFor(modelItem => item.tijdslot)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.podium)
+        </td>
+        <td>
+            @Html.ActionLink("Meer details", "Details", new { id=item.ID })
         </td>
     </tr>
 }

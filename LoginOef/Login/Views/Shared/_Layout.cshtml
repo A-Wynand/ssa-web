@@ -23,10 +23,12 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Bands", "Bands", "Home")</li>
                             <li>@Html.ActionLink("Tickets", "Tickets", "Home")</li>
-                            <li>@Html.ActionLink("Mijn tickets","BesteldeTickets","Home") </li>
-                            @*@if(User.IsInRole("Admin")){*@
+                            @if(User.IsInRole("User") || User.IsInRole("Admin")){
+                                <li>@Html.ActionLink("Mijn tickets","BesteldeTickets","Home") </li>
+                            }
+                            @if(User.IsInRole("Admin")){
                                 <li>@Html.ActionLink("Ticketstatus", "Ticketstatus", "Home")</li>
-                            @*}*@
+                            }
                             <li>@Html.ActionLink("Route - Contact", "Contact", "Home")</li>
                             
                         </ul>

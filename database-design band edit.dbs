@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SqlServer" id="Project6557817" database="SqlServer" >
+	<schema name="dbo" catalogname="Festival" schemaname="dbo" defo="y" >
+		<table name="Band" >
+			<column name="ID" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="naam" type="varchar" length="50" jt="12" mandatory="y" >
+				<comment><![CDATA[Bandbaam]]></comment>
+			</column>
+			<column name="omschrijving" type="text" length="2147483647" jt="-1" mandatory="y" />
+			<column name="fotoUri" type="varchar" length="200" jt="12" mandatory="y" />
+			<column name="tijdslot" type="varchar" length="40" jt="12" mandatory="y" />
+			<column name="podium" type="varchar" length="10" jt="12" mandatory="y" />
+			<index name="Pk_Bands" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="Bandgenre" >
+			<column name="Band_ID" type="int" length="10" jt="4" />
+			<column name="Genre_ID" type="int" length="10" jt="4" />
+			<index name="idx_Bandgenre" unique="NORMAL" >
+				<column name="Genre_ID" />
+			</index>
+			<index name="idx_Bandgenre_0" unique="NORMAL" >
+				<column name="Band_ID" />
+			</index>
+			<fk name="fk_bandgenre_genre" to_schema="dbo" to_table="Genre" >
+				<fk_column name="Genre_ID" pk="ID" />
+			</fk>
+			<fk name="fk_bandgenre_band" to_schema="dbo" to_table="Band" >
+				<fk_column name="Band_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="Genre" >
+			<column name="ID" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="naam" type="varchar" length="25" jt="12" />
+			<index name="Pk_Genres" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="Orders" >
+			<column name="userid" type="int" length="10" jt="4" >
+				<comment><![CDATA[Gebruikers ID van bestelde ticket(s)]]></comment>
+			</column>
+			<column name="ticket" type="int" length="10" jt="4" />
+			<column name="aantal" type="int" length="10" jt="4" />
+		</table>
+		<table name="Ticket" >
+			<column name="ID" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="soort" type="varchar" length="30" jt="12" >
+				<comment><![CDATA[Welk (dag)ticket]]></comment>
+			</column>
+			<column name="aantal" type="int" length="10" jt="4" mandatory="y" />
+			<column name="prijs" type="float" length="53" jt="8" />
+			<index name="Pk_Tickets" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="UserProfile" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="UserName" type="nvarchar" length="56" jt="12" mandatory="y" />
+			<column name="vnaam" type="varchar" length="50" jt="12" />
+			<column name="anaam" type="varchar" length="50" jt="12" />
+			<column name="email" type="varchar" length="150" jt="12" />
+			<index name="PK__UserProf__1788CC4C4AC1A3A2" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+			<index name="UQ__UserProf__C9F28456E5505F08" unique="UNIQUE" >
+				<column name="UserName" />
+			</index>
+		</table>
+		<table name="webpages_Membership" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<column name="CreateDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="ConfirmationToken" type="nvarchar" length="128" jt="12" />
+			<column name="IsConfirmed" type="bit" length="1" jt="-7" >
+				<defo>0</defo>
+			</column>
+			<column name="LastPasswordFailureDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="PasswordFailuresSinceLastSuccess" type="int" length="10" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="Password" type="nvarchar" length="128" jt="12" mandatory="y" />
+			<column name="PasswordChangedDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="PasswordSalt" type="nvarchar" length="128" jt="12" mandatory="y" />
+			<column name="PasswordVerificationToken" type="nvarchar" length="128" jt="12" />
+			<column name="PasswordVerificationTokenExpirationDate" type="datetime" length="23" decimal="3" jt="93" />
+			<index name="PK__webpages__1788CC4CF3456EFC" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+		</table>
+		<table name="webpages_OAuthMembership" >
+			<column name="Provider" type="nvarchar" length="30" jt="12" mandatory="y" />
+			<column name="ProviderUserId" type="nvarchar" length="100" jt="12" mandatory="y" />
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<index name="PK__webpages__F53FC0ED81E2058B" unique="PRIMARY_KEY" >
+				<column name="Provider" />
+				<column name="ProviderUserId" />
+			</index>
+		</table>
+		<table name="webpages_Roles" >
+			<column name="RoleId" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="RoleName" type="nvarchar" length="256" jt="12" mandatory="y" />
+			<index name="PK__webpages__8AFACE1AD33B0B9F" unique="PRIMARY_KEY" >
+				<column name="RoleId" />
+			</index>
+			<index name="UQ__webpages__8A2B616052097621" unique="UNIQUE" >
+				<column name="RoleName" />
+			</index>
+		</table>
+		<table name="webpages_UsersInRoles" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<column name="RoleId" type="int" length="10" jt="4" mandatory="y" />
+			<index name="PK__webpages__AF2760AD64AED5CF" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+				<column name="RoleId" />
+			</index>
+			<fk name="fk_UserId" to_schema="dbo" to_table="UserProfile" >
+				<fk_column name="UserId" pk="UserId" />
+			</fk>
+			<fk name="fk_RoleId" to_schema="dbo" to_table="webpages_Roles" >
+				<fk_column name="RoleId" pk="RoleId" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="SqlServer" database="SqlServer" driver_class="net.sourceforge.jtds.jdbc.Driver" driver_jar="jtds-1.2.7.jar" host="localhost" port="1433" instance="Festival" user="sa" passwd="dGVzdGluZw==" schema_mapping="" />
+	<layout id="Layout6563211" name="dbo" show_relation_columns="y" >
+		<entity schema="dbo" name="Genre" color="f5e3cb" x="1080" y="405" />
+		<entity schema="dbo" name="Orders" color="f5e3cb" x="930" y="90" />
+		<entity schema="dbo" name="webpages_OAuthMembership" color="d2f5cb" x="45" y="225" />
+		<entity schema="dbo" name="webpages_UsersInRoles" color="d2f5cb" x="570" y="90" />
+		<entity schema="dbo" name="Bandgenre" color="f5e3cb" x="795" y="240" />
+		<entity schema="dbo" name="Band" color="d0def5" x="945" y="225" />
+		<entity schema="dbo" name="UserProfile" color="d2f5cb" x="270" y="45" />
+		<entity schema="dbo" name="Ticket" color="f5e3cb" x="1080" y="240" />
+		<entity schema="dbo" name="webpages_Membership" color="d2f5cb" x="270" y="225" />
+		<entity schema="dbo" name="webpages_Roles" color="d2f5cb" x="570" y="225" />
+		<group name="Band" color="faf6f0" >
+			<entity schema="dbo" name="Bandgenre" />
+			<entity schema="dbo" name="Ticket" />
+			<entity schema="dbo" name="Orders" />
+			<entity schema="dbo" name="Genre" />
+		</group>
+		<group name="webpages_Membership" color="f2faf0" >
+			<entity schema="dbo" name="webpages_Membership" />
+			<entity schema="dbo" name="webpages_OAuthMembership" />
+			<entity schema="dbo" name="webpages_Roles" />
+			<entity schema="dbo" name="UserProfile" />
+			<entity schema="dbo" name="webpages_UsersInRoles" />
+		</group>
+	</layout>
+</project>

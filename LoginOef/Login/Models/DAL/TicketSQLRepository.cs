@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace Login.Models.DAL
+namespace Festival.Models.DAL
 {
     public class TicketSQLRepository
     {
@@ -42,7 +42,7 @@ namespace Login.Models.DAL
                     updateAvailableTickets(soort, aantal);
 
                     return true;
-                }    
+                }
             }
         }
 
@@ -52,7 +52,7 @@ namespace Login.Models.DAL
             {
                 con.Open();
 
-                using (var cmd = new SqlCommand("UPDATE Ticket SET aantal = (SELECT aantal FROM Ticket WHERE soort= @soort)-1 WHERE soort = @soort;", con))
+                using (var cmd = new SqlCommand("UPDATE Ticket SET aantal = (SELECT aantal FROM Ticket WHERE soort= @soort)-@aantal WHERE soort = @soort;", con))
                 {
                     cmd.CommandType = CommandType.Text;
 
@@ -93,9 +93,8 @@ namespace Login.Models.DAL
                             {
                                 return Int32.Parse(reader["UserId"].ToString());
                             }
+                            if (reader != null) reader.Close();
                         }
-
-                        // internet says null!L!LL!L!
                         return 0;
                     }
                 }
@@ -150,11 +149,11 @@ namespace Login.Models.DAL
 
                                 lijst.Add(newTicket);
                             }
+                            if (reader != null) reader.Close();
 
-                            return lijst; // lol
+                            return lijst;
                         }
 
-                        // internet says null!L!LL!L!
                         return null;
                     }
 
@@ -173,7 +172,6 @@ namespace Login.Models.DAL
                 {
                     cmd.CommandType = CommandType.Text;
 
-                    // This is what stores your data from the internets...
                     using (var reader = cmd.ExecuteReader())
                     {
 
@@ -195,11 +193,10 @@ namespace Login.Models.DAL
 
                                 lijst.Add(newTicket);
                             }
+                            if (reader != null) reader.Close();
 
-                            return lijst; // lol
+                            return lijst;
                         }
-
-                        // internet says null!L!LL!L!
                         return null;
                     }
 

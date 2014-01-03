@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Login.Models;
-using Login.Models.DAL;
+using Festival.Models;
+using Festival.Models.DAL;
 
-namespace Login.Controllers
+namespace Festival.Controllers
 {
     public class HomeController : Controller
     {
@@ -53,7 +53,7 @@ namespace Login.Controllers
             model[0].soort = "vrijdag";
             model[1].soort = "zaterdag";
             model[2].soort = "zondag";
-            model[3].soort = "Comboticket";
+            model[3].soort = "Comboticket (3 dagen)";
             model[4].soort = "Parking";
 
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
