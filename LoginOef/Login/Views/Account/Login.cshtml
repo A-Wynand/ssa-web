@@ -19,12 +19,12 @@
         <legend>Log in Form</legend>
         <ol>
             <li>
-                Gebruikersnaam
+                @Html.LabelFor(m => m.UserName)
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
             </li>
             <li>
-                Wachtwoord
+                @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
                 @Html.ValidationMessageFor(m => m.Password)
             </li>

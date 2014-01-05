@@ -1,14 +1,21 @@
-﻿@if (Request.IsAuthenticated) {
-    <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-        @using (Html.BeginForm("Uitloggen", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
-} else {
-    <ul>
-        <li>@Html.ActionLink("Registreer", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Inloggen", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+﻿@using Festival.Helpers;
+
+
+
+@if (Request.IsAuthenticated)
+{
+    <li>@Html.MenuItem("Hallo, " + User.Identity.Name + "!", "Manage", "Account")</li>
+    
+    // De logout knop, die graag via n post naar de logout gaat met n anti-forgery token zodat 'n gewone actionlink niet werkt en de <li>'s niet slikt */
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <a class="viezeUitlogknop" href="javascript:document.getElementById('logoutForm').submit()">Uitloggen</a>
+    }
+
+}
+else
+{
+    <li>@Html.ActionLink("Registreer", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Inloggen", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 }

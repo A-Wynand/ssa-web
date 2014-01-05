@@ -6,26 +6,29 @@
 
 <h2>Ticketstatus</h2>
 
-<table>
-    <tr>
-        <th>
-            Ticket Type
-        </th>
-        <th>
-            Resterend aantal tickets
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+            <tr>
+                <th>Ticket Type
+                </th>
+                <th>Resterend aantal tickets
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.soort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aantal)
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soort)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.aantal)
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

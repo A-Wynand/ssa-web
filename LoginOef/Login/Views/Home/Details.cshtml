@@ -4,23 +4,25 @@
     ViewBag.Title = "Details";
 }
 <p>
-    <h2>@Model.naam - details</h2>
 </p>
-<fieldset>
-    <legend>Band</legend>
 
-    <div class="display-label">
-        <img src="@Url.Content(Model.fotoUri)" width="500" height="300" />
+<div class="row">
+    <div class="col-md-2">
+        <h2>Band</h2>
     </div>
-    <p>
+    <div class="col-md-10">
+        <h2>@Model.naam - details</h2>
+
+        <div class="display-label">
+            <img src="@Url.Content(Model.fotoUri)" width="500" height="300" />
+        </div>
+        <p></p>
         <div class="display-field">
             @Model.omschrijving
         </div>
-    </p>    
 
-    
-
-</fieldset>
-<p>
-    @Html.ActionLink("Terug naar bandoverzicht", "Bands")
-</p>
+        <p>
+            @Html.ActionLink("Terug naar bandoverzicht", "Bands")
+        </p>
+    </div>
+</div>

@@ -11,17 +11,21 @@ namespace Festival.Controllers
 {
     public class HomeController : Controller
     {
+
+        // GET: /Home/Index
         public ActionResult Index()
         {
             return View();
         }
 
+        // GET: /Home/Bands
         public ActionResult Bands()
         {
             BandSQLRepository myDbHandler = new BandSQLRepository(); 
             return View(myDbHandler.GetAllBands());
         }
 
+        // GET: /Home/Details/ID (bands)
         public ActionResult Details(int id)
         {
             BandSQLRepository myDbHandler = new BandSQLRepository();
@@ -33,6 +37,7 @@ namespace Festival.Controllers
             return View(myModel);
         }
 
+        // GET: /Home/Tickets
         public ActionResult Tickets()
         {
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
@@ -41,15 +46,16 @@ namespace Festival.Controllers
             return View(BestellingList);
         }
 
+        // POST: /Home/Tickets
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Tickets(List<DagBestelling> model)
         {
-            //Geprobeert extra variable soort in te stellen in view, maar niet in geslaagd,
-            //het probleem zijnde dat bij Model[i] de i out of bound is, terwijl in eenzelfde
-            //Codeblock m => m[i] wel werkt??
+            // Geprobeerd extra variable soort in te stellen in view, maar niet in geslaagd,
+            // het probleem zijnde dat bij Model[i] de i out of bound is, terwijl in eenzelfde
+            // Codeblock m => m[i] wel werkt??
              
-            //Fix because it didn't work :( #saddayQQ
+            // Alt fix, statisch oplossen
             model[0].soort = "vrijdag";
             model[1].soort = "zaterdag";
             model[2].soort = "zondag";
@@ -62,12 +68,14 @@ namespace Festival.Controllers
             return View("TicketBesteld", model);
         }
 
+        // GET: /Home/BesteldeTickets
         public ActionResult BesteldeTickets()
         {
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
             return View(myDbHandler.getAllTicketsByUser(User.Identity.Name));
         }
 
+        // GET: /Home/Ticketstatus
         public ActionResult Ticketstatus() 
         {
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
@@ -75,6 +83,7 @@ namespace Festival.Controllers
             return View(myDbHandler.getAllTickets()); 
         }
 
+        // GET: /Home/Contact
         public ActionResult Contact()
         {
             return View();

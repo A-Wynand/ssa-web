@@ -1,11 +1,11 @@
 ﻿@model Festival.Models.RegisterModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registeer";
 }
 
 <hgroup class="title">
     <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
+    <h2>Maak een nieuw account.</h2>
 </hgroup>
 
 @using (Html.BeginForm()) {
@@ -13,7 +13,7 @@
     @Html.ValidationSummary()
 
     <fieldset>
-        <legend>Registration Form</legend>
+        <legend>Registratie formulier</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.UserName)
@@ -40,7 +40,7 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
         </ol>
-        <input type="submit" value="Register" />
+        <input type="submit" value="Registeer" />
     </fieldset>
 }
 

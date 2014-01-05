@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MenuHighlight.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Band.cs" />
     <Compile Include="Models\DAL\BandSQLRepository.cs" />
@@ -209,7 +210,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\stylesheet.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\arctic-monkeys.jpg" />
+    <Content Include="Content\images\bassnectar-ultra-2013.jpg" />
     <Content Include="Content\images\killers.jpg" />
     <Content Include="Content\images\Linkin-Park-Iridescent-transformers3.jpg" />
     <Content Include="Content\images\logo.jpg" />
@@ -220,6 +228,9 @@
     <Content Include="Content\images\skrillex.jpg" />
     <Content Include="Content\images\the-black-keys.jpg" />
     <Content Include="Content\images\triggerfinger.jpg" />
+    <Content Include="Content\images\umf-logo.png" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -276,6 +287,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -301,7 +315,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\old_Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
