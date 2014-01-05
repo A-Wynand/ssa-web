@@ -1,10 +1,11 @@
 ﻿@using Festival.Helpers;
 
-
-
+@if (Request.IsAuthenticated){
+    <li>@Html.MenuItem("Hallo, " + User.Identity.Name + "!", "Manage", "Account")</li>
+}
+<li></li>
 @if (Request.IsAuthenticated)
 {
-    <li>@Html.MenuItem("Hallo, " + User.Identity.Name + "!", "Manage", "Account")</li>
     
     // De logout knop, die graag via n post naar de logout gaat met n anti-forgery token zodat 'n gewone actionlink niet werkt en de <li>'s niet slikt */
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))

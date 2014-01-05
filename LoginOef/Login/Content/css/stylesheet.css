@@ -95,4 +95,5 @@
     position: relative;
     text-align: left;
     text-decoration: none solid rgb(153, 153, 153);
+    float: right;
 }
