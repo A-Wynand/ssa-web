@@ -11,7 +11,7 @@
 }
 @if (WebSecurity.IsAuthenticated == false)
 {
-    <p>@Html.ActionLink("Registreer een account", "Register", "Account") om je tickets te bestellen!</p>
+    <p>@Html.ActionLink("Registreer een account", "Register", "Account") of @Html.ActionLink("log in", "Login", "Account") om je tickets te bestellen!</p>
 }
 
 <div class="row">
@@ -41,17 +41,29 @@
                 <tr>
                     <td>
                         @item.soort
+                        <br />
+                        @if (item.aantal <= 0)
+                        {
+                            @Html.Label("Uitverkocht!");
+                        }
                     </td>
                     @if (WebSecurity.IsAuthenticated)
                     {
                         <td>
+                            @if (item.aantal > 0)
+                            {
+                                var test = new List<int>();
+                                for (int index = 0; index <= 5 && index <= item.aantal; index++)
+                                {
+                                    test.Add(index);
+                                }
 
-                            @Html.DropDownListFor(m => m[i].aantal, new SelectList(
-                        new List<int>{
-                            0,1,2,3,4,5
-                        })
-                    )
-
+                                @Html.DropDownListFor(m => m[i].aantal, new SelectList(test))
+                            }
+                            else
+                            {                                
+                                @Html.DropDownListFor(m => m[i].aantal, new SelectList(new List<int> { 0 }))
+                            }
                         </td>
                     }
                     <td>

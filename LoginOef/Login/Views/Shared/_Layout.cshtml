@@ -44,7 +44,7 @@
                     <li>@Html.MenuItem("Bands", "Bands", "Home")</li>
 
                     <li>@Html.MenuItem("Tickets", "Tickets", "Home")</li>
-                    @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                    @if (WebSecurity.IsAuthenticated)
                     {
                         <li>@Html.MenuItem("Mijn tickets", "BesteldeTickets", "Home") </li>
                     }
@@ -52,7 +52,6 @@
                     {
                         <li>@Html.MenuItem("Ticketstatus", "Ticketstatus", "Home")</li>
                     }
-                    <li>@Html.MenuItem("Registreer", "Register", "Account")</li>
                     <li>@Html.MenuItem("Route - Contact", "Contact", "Home")</li>
                 </ul>
 

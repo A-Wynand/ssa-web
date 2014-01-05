@@ -42,6 +42,7 @@ namespace Festival.Controllers
         {
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
             ViewBag.Tickets = myDbHandler.getAllTickets();
+
             var BestellingList = new List<DagBestelling>();
             return View(BestellingList);
         }
@@ -62,7 +63,26 @@ namespace Festival.Controllers
             model[3].soort = "Comboticket (3 dagen)";
             model[4].soort = "Parking";
 
+            // Kijken of aantal binnengekomen tickets niet groter is dan gekochte tickets
             TicketSQLRepository myDbHandler = new TicketSQLRepository();
+            
+            var allTickets = myDbHandler.getAllTickets();
+            foreach (var item in allTickets)
+            {
+                foreach (var modelitem in model)
+                {
+                    if (modelitem.soort == item.soort)
+                    {
+                        if (modelitem.aantal > item.aantal)
+                        {
+                            return View("errorTicketOrder");
+                        }
+                    }
+                }
+            }
+            //Als we hier doorraken dan is alles safe & local & serverside zijn protected
+            
+
             myDbHandler.insertOrder(model, User.Identity.Name);
             
             return View("TicketBesteld", model);
