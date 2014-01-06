@@ -1,5 +1,0 @@
-1) zien dat users kunnen registreren en 3 niveau's aanmaken (anoniem/registered/admin) die elks hun pagina te zien krijgen
-2) line up dumpen
-3) ticketing systeem schrijven voor geregistreerde users
-4) admin da kan zien hoeveel tickets er remaining zijn
-5) css wat uitwerken

@@ -1,0 +1,262 @@
+.navbar
+{
+    background: rgba(0, 0, 0, 0.2);
+    border: rgba(255, 255, 255, .6);
+}
+
+.navbar-inverse .navbar-brand
+{
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a
+{
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.jumbotron
+{
+    background: url('/Content/images/bassnectar-ultra-2013.jpg') no-repeat center top;
+    background-size: cover;
+    color: #ede1e1;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.7);
+    padding: 195px 0 170px 0;
+}
+
+    .jumbotron .btn
+    {
+        text-shadow: none;
+        background: rgba(80, 0, 80, 0.5);
+        border: 1px #583e9f solid;
+        font-size: 14px;
+    }
+
+        .jumbotron .btn:hover
+        {
+            background: rgba(10, 10, 35, 0.6);
+        }
+
+#logo
+{
+    width: 49%;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 980px)
+{
+
+    .navbar-inverse .navbar-nav > li > a
+    {
+        color: #fff;
+    }
+
+    #logo
+    {
+        width: 35%;
+        margin: -35px auto 35px auto;
+    }
+
+    .jumbotron
+    {
+        padding: 175px 0 85px 0;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px)
+{
+    #logo
+    {
+        width: 65%;
+        margin: 5px auto 0px auto;
+    }
+
+    .jumbotron
+    {
+        padding: 125px 0 85px 0;
+    }
+}
+
+.viezeUitlogknop /* CSS van uitsluitend de logout knop, die graag via n post naar de logout gaat met n anti-forgery token zodat 'n gewone actionlink niet werkt en de <li>'s niet slikt */
+{
+    color: rgb(153, 153, 153);
+    cursor: auto;
+    display: block;
+    font-size: 14px;
+    height: 50px;
+    line-height: 20px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    position: relative;
+    text-align: left;
+    text-decoration: none solid rgb(153, 153, 153);
+    float: right;
+}
+
+
+/* STUFF TO FIX */
+/* login
+----------------------------------------------------------*/
+#login {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login a {
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+    #login a.username {
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: underline;
+    }
+
+    #login ul {
+        margin: 0;
+    }
+
+    #login li {
+        display: inline;
+        list-style: none;
+    }
+
+
+/* login page */
+#loginForm {
+    float: left;
+    width: 55%;
+}
+
+    #loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
+
+    #loginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
+
+    #loginForm input {
+        width: 250px;
+    }
+
+    #loginForm input[type="checkbox"],
+    #loginForm input[type="submit"],
+    #loginForm input[type="button"],
+    #loginForm button {
+        width: auto;
+    }
+
+#socialLoginForm {
+    margin-left: 40px;
+    float: left;
+    width: 40%;
+}
+
+    #socialLoginForm h2 {
+        margin-bottom:  5px;
+    }
+
+#socialLoginList button {
+    margin-bottom: 12px;
+}
+
+#logoutForm {
+    display: inline;
+}
+
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+input, textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+    input:focus, textarea:focus {
+        border: 1px solid #7ac0da;
+    }
+
+    input[type="checkbox"] {
+        background: transparent;
+        border: inherit;
+        width: auto;
+    }
+
+    input[type="submit"],
+    input[type="button"],
+    button {
+        background-color: #d3dce0;
+        border: 1px solid #787878;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 7px;
+        margin-right: 8px;
+        width: auto;
+    }
+
+    td input[type="submit"],
+    td input[type="button"],
+    td button {
+        font-size: 1em;
+        padding: 4px;
+        margin-right: 4px;
+    }

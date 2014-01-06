@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Festival.Models.Band>
+
+@{
+    ViewBag.Title = "Bands";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <h2>Timetable</h2>
+        <p>
+            Alle bands zijn voorbehouden aan eventuele opzeggingen, tijdstippen kunnen licht afwijken.
+        </p>
+    </div>
+    <div class="col-md-10">
+        <table class="table">
+            <tr>
+                <th>Bandnaam
+                </th>
+                <th>Tijdslot
+                </th>
+                <th>Stage
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.naam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tijdslot)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.podium)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Meer details", "Details", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@using Festival.Helpers; @*Dynamisch highlighted link in navbar*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/stylesheet.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <title>@ViewBag.Title - Ultra musicfestival</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <!-- Header-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ULTRA Music Festival</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.MenuItem("Home", "Index", "Home")</li>
+                    <li>@Html.MenuItem("Bands", "Bands", "Home")</li>
+
+                    <li>@Html.MenuItem("Tickets", "Tickets", "Home")</li>
+                    @if (WebSecurity.IsAuthenticated)
+                    {
+                        <li>@Html.MenuItem("Mijn tickets", "BesteldeTickets", "Home") </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.MenuItem("Ticketstatus", "Ticketstatus", "Home")</li>
+                    }
+
+                    <li>@Html.MenuItem("Route - Contact", "Contact", "Home")</li>
+                </ul>
+
+                <section id="login">
+                    <ul class="nav navbar-nav navbar-right">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </section>
+
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Content/images/umf-logo.png" alt="UMF" id="logo" />
+                </div>
+                <div class="col-md-8">
+                    <p>ULTRA Music Festival is een driedaags festival en wordt sinds 2014 door de Humanistische Jongeren van Mortsel georganiseerd. Het groeide uit van een klein lokaal muziekgebeuren tot een alternatief openluchtfestival. Inmiddels behoort ULTRA Music festival tot de absolute top van de Europese muziekevenementen.</p>
+                    <p>
+                        @Html.ActionLink("Bands", "Bands", "Home", null, new { @class = "btn btn-primary btn-lg" })
+                        @Html.ActionLink("Order Tickets", "Tickets", "Home", null, new { @class = "btn btn-primary btn-lg" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Body section -->
+    <div class="container">
+        <div class="row">
+
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+
+
+        <!-- Footer section -->
+        <hr />
+        <footer>
+            <p>@Html.ActionLink("RSS Feed", "Go", "RSS")</p>
+            <p>Copyright &copy; Arne-Wynand Vanderheyden 2013 - 2014.  Gemaakt voor 2NMCT-SSA, alle gebruikte afbeeldingen en teksten blijven eigendom van hun respectievelijke eigenaars.</p>
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="~/Content/js/bootstrap.min.js"></script>
+    </div>
+
+</body>
+</html>

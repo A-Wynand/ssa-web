@@ -1,0 +1,91 @@
+﻿@model List<Festival.Models.DagBestelling>
+
+@{
+    ViewBag.Title = "Tickets";
+}
+
+<h2>Tickets</h2>
+@if (WebSecurity.IsAuthenticated)
+{
+    <p>Geef hieronder je bestelling door. Per bestelling zijn er maximum 5 tickets van elk soort beschikbaar.</p>
+}
+@if (WebSecurity.IsAuthenticated == false)
+{
+    <p>@Html.ActionLink("Registreer een account", "Register", "Account") of @Html.ActionLink("log in", "Login", "Account") om je tickets te bestellen!</p>
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <table class="table">
+            <tr>
+                <th>Soort
+                </th>
+                @if (WebSecurity.IsAuthenticated)
+                {
+                    <th>Aantal
+                    </th>
+                }
+                <th>Ticketprijs
+                </th>
+                <th></th>
+            </tr>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken() @*No XSS*@
+                @Html.ValidationSummary()
+
+                int i = 0;
+                foreach (var item in ViewBag.Tickets)
+                {
+                <tr>
+                    <td>
+                        @item.soort
+                        <br />
+                        @if (item.aantal <= 0)
+                        {
+                            @Html.Label("Uitverkocht!");
+                        }
+                    </td>
+                    @if (WebSecurity.IsAuthenticated)
+                    {
+                        <td>
+                            @if (item.aantal > 0)
+                            {
+                                var beschikbare = new List<int>();
+                                for (int index = 0; index <= 5 && index <= item.aantal; index++)
+                                {
+                                    beschikbare.Add(index);
+                                }
+
+                                @Html.DropDownListFor(m => m[i].aantal, new SelectList(beschikbare))
+                            }
+                            else
+                            {                                
+                                @Html.DropDownListFor(m => m[i].aantal, new SelectList(new List<int> { 0 }))
+                            }
+                        </td>
+                    }
+                    <td>
+                        €@item.prijs
+                    </td>
+                </tr>
+
+                    i++;
+
+                }
+                if (WebSecurity.IsAuthenticated)
+                {
+    
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Bestel nu!" />
+                    </td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

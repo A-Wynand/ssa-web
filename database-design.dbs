@@ -1,222 +1,143 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="SqlServer" id="Project7825010" database="SqlServer" >
+<project name="SqlServer" id="Project9182870" database="SqlServer" >
 	<schema name="dbo" catalogname="Festival" schemaname="dbo" defo="y" >
-		<table name="Bandgenres" generator_rows="150" >
-			<column name="Band_ID" type="int" jt="4" />
-			<column name="Genre_ID" type="int" jt="4" />
-			<index name="idx_bandID" unique="NORMAL" >
-				<column name="Band_ID" />
-			</index>
-			<index name="idx_genreID" unique="NORMAL" >
-				<column name="Genre_ID" />
-			</index>
-			<fk name="fk_bandgenre_bands" to_schema="dbo" to_table="Bands" >
-				<fk_column name="Band_ID" pk="ID" />
-			</fk>
-			<fk name="fk_bandgenre_muziekgenres" to_schema="dbo" to_table="Genres" >
-				<fk_column name="Genre_ID" pk="ID" />
-			</fk>
-		</table>
-		<table name="Bands" generator_rows="100" >
-			<comment>Lijst muziekbands</comment>
-			<column name="ID" type="int" jt="4" mandatory="y" autoincrement="y" />
+		<table name="Band" >
+			<column name="ID" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
 			<column name="naam" type="varchar" length="50" jt="12" mandatory="y" >
 				<comment><![CDATA[Bandbaam]]></comment>
 			</column>
-			<column name="omschrijving" type="text" jt="-1" mandatory="y" >
-				<comment><![CDATA[Korte omschrijving v.e. band]]></comment>
-			</column>
-			<column name="fotoUri" type="varchar" length="200" jt="12" mandatory="y" >
-				<comment><![CDATA[Pad naar foto]]></comment>
-			</column>
+			<column name="omschrijving" type="text" length="2147483647" jt="-1" mandatory="y" />
+			<column name="fotoUri" type="varchar" length="200" jt="12" mandatory="y" />
+			<column name="tijdslot" type="varchar" length="40" jt="12" mandatory="y" />
+			<column name="podium" type="varchar" length="10" jt="12" mandatory="y" />
 			<index name="Pk_Bands" unique="PRIMARY_KEY" >
 				<column name="ID" />
 			</index>
 		</table>
-		<table name="Gebruikers" generator_rows="100" >
-			<column name="ID" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="vnaam" type="varchar" length="50" jt="12" mandatory="y" >
-				<comment><![CDATA[Voornaam]]></comment>
-			</column>
-			<column name="anaam" type="varchar" length="60" jt="12" mandatory="y" >
-				<comment><![CDATA[Achternaam]]></comment>
-			</column>
-			<column name="email" type="varchar" length="120" jt="12" mandatory="y" >
-				<comment><![CDATA[Email-adres]]></comment>
-			</column>
-			<column name="wachtwoord" type="varchar" length="150" jt="12" mandatory="y" >
-				<comment><![CDATA[wachtwoord(hash)]]></comment>
-			</column>
-			<column name="isAdmin" type="tinyint" jt="-6" >
-				<defo>0</defo>
-				<comment><![CDATA[Is de user administrator?]]></comment>
-			</column>
-			<index name="Pk_Gebruikers" unique="PRIMARY_KEY" >
-				<column name="ID" />
-			</index>
-		</table>
-		<table name="Genres" generator_rows="100" >
-			<column name="ID" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="naam" type="varchar" length="25" jt="12" />
-			<index name="Pk_Genres" unique="PRIMARY_KEY" >
-				<column name="ID" />
-			</index>
-		</table>
-		<table name="Orders" generator_rows="100" >
+		<table name="Orders" >
 			<comment>Lijst van bestelde tickets</comment>
-			<column name="userid" type="int" jt="4" >
+			<column name="userid" type="int" length="10" jt="4" >
 				<comment><![CDATA[Gebruikers ID van bestelde ticket(s)]]></comment>
 			</column>
-			<column name="ticket" type="int" jt="4" >
-				<comment><![CDATA[Welk ticket?]]></comment>
-			</column>
-			<column name="aantal" type="int" jt="4" >
-				<comment><![CDATA[Aantal bestelde tickets]]></comment>
-			</column>
+			<column name="ticket" type="int" length="10" jt="4" />
+			<column name="aantal" type="int" length="10" jt="4" />
 		</table>
-		<table name="Tickets" generator_rows="100" >
-			<column name="ID" type="int" jt="4" mandatory="y" autoincrement="y" />
-			<column name="soort" type="text" length="20" jt="-1" >
+		<table name="RSS" >
+			<column name="ID" type="int" jt="4" mandatory="y" autoincrement="y" >
+				<comment><![CDATA[Bericht ID]]></comment>
+			</column>
+			<column name="Title" type="varchar(max)" length="100" jt="12" >
+				<comment><![CDATA[Bericht-titel]]></comment>
+			</column>
+			<column name="Description" type="text" jt="-1" >
+				<comment><![CDATA[Bericht inhoud]]></comment>
+			</column>
+			<column name="CreatedBy" type="varchar" length="20" jt="12" />
+			<column name="DateAdded" type="date" jt="91" />
+			<index name="Pk_RSS" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="Ticket" >
+			<column name="ID" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="soort" type="varchar" length="30" jt="12" >
 				<comment><![CDATA[Welk (dag)ticket]]></comment>
 			</column>
-			<column name="aantal" type="int" jt="4" mandatory="y" >
-				<comment><![CDATA[Aantal beschikbare tickets]]></comment>
-			</column>
+			<column name="aantal" type="int" length="10" jt="4" mandatory="y" />
+			<column name="prijs" type="float" length="53" jt="8" />
 			<index name="Pk_Tickets" unique="PRIMARY_KEY" >
 				<column name="ID" />
 			</index>
 		</table>
+		<table name="UserProfile" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="UserName" type="nvarchar" length="56" jt="12" mandatory="y" />
+			<column name="vnaam" type="varchar" length="50" jt="12" />
+			<column name="anaam" type="varchar" length="50" jt="12" />
+			<column name="email" type="varchar" length="150" jt="12" />
+			<index name="PK__UserProf__1788CC4C4AC1A3A2" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+			<index name="UQ__UserProf__C9F28456E5505F08" unique="UNIQUE" >
+				<column name="UserName" />
+			</index>
+		</table>
+		<table name="webpages_Membership" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<column name="CreateDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="ConfirmationToken" type="nvarchar" length="128" jt="12" />
+			<column name="IsConfirmed" type="bit" length="1" jt="-7" >
+				<defo>0</defo>
+			</column>
+			<column name="LastPasswordFailureDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="PasswordFailuresSinceLastSuccess" type="int" length="10" jt="4" mandatory="y" >
+				<defo>0</defo>
+			</column>
+			<column name="Password" type="nvarchar" length="128" jt="12" mandatory="y" />
+			<column name="PasswordChangedDate" type="datetime" length="23" decimal="3" jt="93" />
+			<column name="PasswordSalt" type="nvarchar" length="128" jt="12" mandatory="y" />
+			<column name="PasswordVerificationToken" type="nvarchar" length="128" jt="12" />
+			<column name="PasswordVerificationTokenExpirationDate" type="datetime" length="23" decimal="3" jt="93" />
+			<index name="PK__webpages__1788CC4CF3456EFC" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+		</table>
+		<table name="webpages_OAuthMembership" >
+			<column name="Provider" type="nvarchar" length="30" jt="12" mandatory="y" />
+			<column name="ProviderUserId" type="nvarchar" length="100" jt="12" mandatory="y" />
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<index name="PK__webpages__F53FC0ED81E2058B" unique="PRIMARY_KEY" >
+				<column name="Provider" />
+				<column name="ProviderUserId" />
+			</index>
+		</table>
+		<table name="webpages_Roles" >
+			<column name="RoleId" type="int" length="10" jt="4" mandatory="y" autoincrement="y" />
+			<column name="RoleName" type="nvarchar" length="256" jt="12" mandatory="y" />
+			<index name="PK__webpages__8AFACE1AD33B0B9F" unique="PRIMARY_KEY" >
+				<column name="RoleId" />
+			</index>
+			<index name="UQ__webpages__8A2B616052097621" unique="UNIQUE" >
+				<column name="RoleName" />
+			</index>
+		</table>
+		<table name="webpages_UsersInRoles" >
+			<column name="UserId" type="int" length="10" jt="4" mandatory="y" />
+			<column name="RoleId" type="int" length="10" jt="4" mandatory="y" />
+			<index name="PK__webpages__AF2760AD64AED5CF" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+				<column name="RoleId" />
+			</index>
+			<fk name="fk_UserId" to_schema="dbo" to_table="UserProfile" >
+				<fk_column name="UserId" pk="UserId" />
+			</fk>
+			<fk name="fk_RoleId" to_schema="dbo" to_table="webpages_Roles" >
+				<fk_column name="RoleId" pk="RoleId" />
+			</fk>
+		</table>
 	</schema>
 	<connector name="SqlServer" database="SqlServer" driver_class="net.sourceforge.jtds.jdbc.Driver" driver_jar="jtds-1.2.7.jar" host="localhost" port="1433" instance="Festival" user="sa" passwd="dGVzdGluZw==" schema_mapping="" />
-	<layout id="Layout7837555" name="Default" show_relation_columns="y" >
-		<entity schema="dbo" name="Bands" color="d0def5" x="225" y="45" />
-		<entity schema="dbo" name="Bandgenres" color="d0def5" x="390" y="45" />
-		<entity schema="dbo" name="Genres" color="d0def5" x="540" y="45" />
-		<entity schema="dbo" name="Gebruikers" color="d0def5" x="45" y="45" />
-		<entity schema="dbo" name="Orders" color="d0def5" x="45" y="210" />
-		<entity schema="dbo" name="Tickets" color="d0def5" x="165" y="210" />
-		<script name="Bandgenres" id="SQL3830487" >
-			<string><![CDATA[INSERT INTO dbo.Bandgenres
-	( Band_ID, Genre_ID) VALUES ( ?, ? );
-	]]></string>
-		</script>
-		<script name="Bandgenres_001" id="SQL5090241" >
-			<string><![CDATA[CREATE TABLE dbo.Bandgenres ( 
-	Band_ID              int    ,
-	Genre_ID             int    
- );
-
-CREATE INDEX idx_bandID ON dbo.Bandgenres ( Band_ID );
-
-CREATE INDEX idx_genreID ON dbo.Bandgenres ( Genre_ID );
-
-ALTER TABLE dbo.Bandgenres ADD CONSTRAINT fk_bandgenre_bands FOREIGN KEY ( Band_ID ) REFERENCES dbo.Bands( ID ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE dbo.Bandgenres ADD CONSTRAINT fk_bandgenre_muziekgenres FOREIGN KEY ( Genre_ID ) REFERENCES dbo.Genres( ID ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-]]></string>
-		</script>
-		<script name="Bands" id="SQL3833286" >
-			<string><![CDATA[INSERT INTO dbo.Bands
-	( ID, naam, omschrijving, fotoUri) VALUES ( ?, ?, ?, ? );]]></string>
-		</script>
-		<script name="Bands_001" id="SQL5114816" >
-			<string><![CDATA[CREATE TABLE dbo.Bands ( 
-	ID                   int NOT NULL   IDENTITY,
-	naam                 varchar(50) NOT NULL   ,
-	omschrijving         text NOT NULL   ,
-	fotoUri              varchar(200) NOT NULL   ,
-	CONSTRAINT Pk_Bands PRIMARY KEY ( ID )
- );
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Lijst muziekbands' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Bands';;
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Bandbaam' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Bands', @level2type=N'COLUMN',@level2name=N'naam';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Korte omschrijving v.e. band' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Bands', @level2type=N'COLUMN',@level2name=N'omschrijving';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Pad naar foto' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Bands', @level2type=N'COLUMN',@level2name=N'fotoUri';
-
-]]></string>
-		</script>
-		<script name="Gebruikers" id="SQL3836006" >
-			<string><![CDATA[INSERT INTO dbo.Gebruikers
-	( ID, vnaam, anaam, email, wachtwoord, isAdmin) VALUES ( ?, ?, ?, ?, ?, ? );]]></string>
-		</script>
-		<script name="Gebruikers_001" id="SQL5146263" >
-			<string><![CDATA[CREATE TABLE dbo.Gebruikers ( 
-	ID                   int NOT NULL   IDENTITY,
-	vnaam                varchar(50) NOT NULL   ,
-	anaam                varchar(60) NOT NULL   ,
-	email                varchar(120) NOT NULL   ,
-	wachtwoord           varchar(150) NOT NULL   ,
-	isAdmin              tinyint  CONSTRAINT defo_isAdmin DEFAULT 0  ,
-	CONSTRAINT Pk_Gebruikers PRIMARY KEY ( ID )
- );
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Voornaam' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Gebruikers', @level2type=N'COLUMN',@level2name=N'vnaam';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Achternaam' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Gebruikers', @level2type=N'COLUMN',@level2name=N'anaam';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Email-adres' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Gebruikers', @level2type=N'COLUMN',@level2name=N'email';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'wachtwoord(hash)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Gebruikers', @level2type=N'COLUMN',@level2name=N'wachtwoord';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Is de user administrator?' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Gebruikers', @level2type=N'COLUMN',@level2name=N'isAdmin';
-
-]]></string>
-		</script>
-		<script name="Genres" id="SQL3838193" >
-			<string><![CDATA[INSERT INTO dbo.Genres
-	( ID, naam) VALUES ( ?, ? );]]></string>
-		</script>
-		<script name="Genres_001" id="SQL5176211" >
-			<string><![CDATA[CREATE TABLE dbo.Genres ( 
-	ID                   int NOT NULL   IDENTITY,
-	naam                 varchar(25)    ,
-	CONSTRAINT Pk_Genres PRIMARY KEY ( ID )
- );
-
-]]></string>
-		</script>
-		<script name="Orders" id="SQL3841500" >
-			<string><![CDATA[INSERT INTO dbo.Orders
-	( userid, ticket, aantal) VALUES ( ?, ?, ? );]]></string>
-		</script>
-		<script name="Orders_001" id="SQL5244942" >
-			<string><![CDATA[CREATE TABLE dbo.Orders ( 
-	userid               int    ,
-	ticket               int    ,
-	aantal               int    
- );
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Lijst van bestelde tickets' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Orders';;
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Gebruikers ID van bestelde ticket(s)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Orders', @level2type=N'COLUMN',@level2name=N'userid';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Welk ticket?' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Orders', @level2type=N'COLUMN',@level2name=N'ticket';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Aantal bestelde tickets' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Orders', @level2type=N'COLUMN',@level2name=N'aantal';
-
-]]></string>
-		</script>
-		<script name="Tickets" id="SQL3844432" >
-			<string><![CDATA[INSERT INTO dbo.Tickets
-	( ID, soort, aantal) VALUES ( ?, ?, ? );]]></string>
-		</script>
-		<script name="Tickets_001" id="SQL5263163" >
-			<string><![CDATA[CREATE TABLE dbo.Tickets ( 
-	ID                   int NOT NULL   IDENTITY,
-	soort                varchar(20)    ,
-	aantal               int NOT NULL   ,
-	CONSTRAINT Pk_Tickets PRIMARY KEY ( ID )
- );
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Welk (dag)ticket' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Tickets', @level2type=N'COLUMN',@level2name=N'soort';
-
-exec sp_addextendedproperty  @name=N'MS_Description', @value=N'Aantal beschikbare tickets' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Tickets', @level2type=N'COLUMN',@level2name=N'aantal';
-
-]]></string>
-		</script>
+	<layout id="Layout9186270" name="dbo" show_relation_columns="y" >
+		<entity schema="dbo" name="Band" color="f5e3cb" x="795" y="195" />
+		<entity schema="dbo" name="webpages_Membership" color="d2f5cb" x="270" y="240" />
+		<entity schema="dbo" name="webpages_OAuthMembership" color="d2f5cb" x="45" y="240" />
+		<entity schema="dbo" name="webpages_Roles" color="d2f5cb" x="570" y="240" />
+		<entity schema="dbo" name="webpages_UsersInRoles" color="d2f5cb" x="570" y="105" />
+		<entity schema="dbo" name="RSS" color="d0def5" x="930" y="45" />
+		<entity schema="dbo" name="Orders" color="f5e3cb" x="795" y="45" />
+		<entity schema="dbo" name="Ticket" color="f5e3cb" x="960" y="195" />
+		<entity schema="dbo" name="UserProfile" color="d2f5cb" x="270" y="60" />
+		<group name="Genre" color="faf6f0" >
+			<entity schema="dbo" name="Band" />
+			<entity schema="dbo" name="Ticket" />
+			<entity schema="dbo" name="Orders" />
+		</group>
+		<group name="webpages_Membership" color="f2faf0" >
+			<entity schema="dbo" name="webpages_Membership" />
+			<entity schema="dbo" name="webpages_OAuthMembership" />
+			<entity schema="dbo" name="webpages_Roles" />
+			<entity schema="dbo" name="UserProfile" />
+			<entity schema="dbo" name="webpages_UsersInRoles" />
+		</group>
 	</layout>
 </project>

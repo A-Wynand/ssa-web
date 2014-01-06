@@ -1,3 +1,0 @@
-- Confirmation page van bestelling
-- Max x tickets bestellen bij x resterend in database
-- WRITE ALLL THE CSS.
